@@ -9,6 +9,7 @@
   },
   "keywords": [],
   "author": "",
+   "type": "module",
   "license": "ISC",
   "dependencies": {
     "@clerk/express": "^1.7.4",
