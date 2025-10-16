@@ -3,6 +3,8 @@ import { ENV } from "./config/env.js";
 import { connectDB } from "./config/db.js";
 import { functions, inngest } from "./config/inngest.js";
 import { serve } from "inngest/express";
+import { clerkMiddleware } from '@clerk/express';
+
 
 const app = express();
 
