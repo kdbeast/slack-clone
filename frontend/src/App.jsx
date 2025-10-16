@@ -1,11 +1,21 @@
-import "./App.css";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/clerk-react";
 
-function App() {
+const App = () => {
   return (
-    <>
-      <h1>Hello World!</h1>
-    </>
+    <header>
+      <SignedOut>
+        <SignInButton mode="modal" />
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
+    </header>
   );
-}
+};
 
 export default App;
