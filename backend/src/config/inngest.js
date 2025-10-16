@@ -6,7 +6,7 @@ import { User } from "../modals/user.model.js";
 export const inngest = new Inngest({ id: "my-app" });
 
 const syncUser = inngest.createFunction(
-  { id: "Sync User" },
+  { id: "sync-user" },
   { event: "clerk/user.created" },
   async ({ event }) => {
     await connectDB();
