@@ -17,7 +17,7 @@ export const useStreamChat = () => {
 
   // fetch stream token using react-query
   const {
-    data: tokenData,
+    data: token,
     isLoading,
     error,
   } = useQuery({
@@ -28,7 +28,7 @@ export const useStreamChat = () => {
 
   // init stream chat client
   useEffect(() => {
-    if (!tokenData?.token || !user?.id || !STREAM_API_KEY) return;
+    if (!token || !user?.id || !STREAM_API_KEY) return;
 
     const client = StreamChat.getInstance(STREAM_API_KEY);
     let cancelled = false;
@@ -45,7 +45,7 @@ export const useStreamChat = () => {
               user.id,
             image: user.imageUrl ?? undefined,
           },
-          tokenData.token
+          token
         );
         if (!cancelled) {
           setChatClient(client);
@@ -70,7 +70,7 @@ export const useStreamChat = () => {
       cancelled = true;
       client.disconnectUser();
     };
-  }, [tokenData?.token, user?.id]);
+  }, [token, user?.id]);
 
   return { chatClient, isLoading, error };
 };
