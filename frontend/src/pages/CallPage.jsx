@@ -29,7 +29,7 @@ const CallPage = () => {
   const [call, setCall] = useState(null);
   const [isConnecting, setIsConnecting] = useState(true);
 
-  const { data: tokenData } = useQuery({
+  const { data: token } = useQuery({
     queryKey: ["streamToken"],
     queryFn: getStreamToken,
     enabled: !!user,
@@ -37,7 +37,7 @@ const CallPage = () => {
 
   useEffect(() => {
     const initCall = async () => {
-      if (!tokenData.token || !user || !callId) return;
+      if (!token || !user || !callId) return;
 
       try {
         const videoClient = new StreamVideoClient({
@@ -47,7 +47,7 @@ const CallPage = () => {
             name: user.fullName,
             image: user.imageUrl,
           },
-          token: tokenData.token,
+          token,
         });
 
         const callInstance = videoClient.call("default", callId);
@@ -64,7 +64,7 @@ const CallPage = () => {
     };
 
     initCall();
-  }, [tokenData, user, callId]);
+  }, [token, user, callId]);
 
   if (isConnecting || !isLoaded) {
     return (
